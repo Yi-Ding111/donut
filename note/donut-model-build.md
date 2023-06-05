@@ -2,7 +2,28 @@
 
 The official tutorial notebook could be found here: [here](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/Donut)
 
-Qpythonpy
+
+
+
+
+## Vision Encoder Decoder Models
+
+VisionEncoderDecoderModel Initializes an image-to-text model with 
+
+1. any pretrained Transformer-based vision model as the encoder (*e.g.* [ViT](https://huggingface.co/docs/transformers/model_doc/vit), [BEiT](https://huggingface.co/docs/transformers/model_doc/beit), [DeiT](https://huggingface.co/docs/transformers/model_doc/deit), [Swin](https://huggingface.co/docs/transformers/model_doc/swin)) 
+2. any pretrained language model as the decoder (*e.g.* [RoBERTa](https://huggingface.co/docs/transformers/model_doc/roberta), [GPT2](https://huggingface.co/docs/transformers/model_doc/gpt2), [BERT](https://huggingface.co/docs/transformers/model_doc/bert), [DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert)).
+
+
+
+Donut is an instance of [VisionEncoderDecoderModel](https://huggingface.co/docs/transformers/model_doc/vision-encoder-decoder).
+
+Donut 是一个可以用于图像编码和解码的机器学习模型实例。它是一个 VisionEncoderDecoderModel 类型的对象。
+
+VisionEncoderDecoderModel 是一个类,代表一个图像编码-解码模型。
+
+Donut 是这个类的一个具体实例,一个对象。换句话说,Donut 是一个具体的图像编码-解码模型,它是 VisionEncoderDecoderModel 这个类的一个实例对象。
+
+
 
 
 
@@ -10,14 +31,56 @@ Qpythonpy
 
 ## VisionEncoderDecoderConfig
 
-https://huggingface.co/docs/transformers/model_doc/vision-encoder-decoder
+https://huggingface.co/docs/transformers/model_doc/vision-encoder-decoder#transformers.VisionEncoderDecoderConfig
 
-Initialize an image-to-text model with 
+* **VisionEncoderDecoderConfig is the configuration class to *<u>store the configuration</u>* of a VisionEncoderDecoderModel**, defining the encoder and decoder configs.
 
-1. any pretrained Transformer-based vision model as the encoder (*e.g.* [ViT](https://huggingface.co/docs/transformers/model_doc/vit), [BEiT](https://huggingface.co/docs/transformers/model_doc/beit), [DeiT](https://huggingface.co/docs/transformers/model_doc/deit), [Swin](https://huggingface.co/docs/transformers/model_doc/swin)) 
-2. any pretrained language model as the decoder (*e.g.* [RoBERTa](https://huggingface.co/docs/transformers/model_doc/roberta), [GPT2](https://huggingface.co/docs/transformers/model_doc/gpt2), [BERT](https://huggingface.co/docs/transformers/model_doc/bert), [DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert)).
+* The configuration objects can be used to control the model outputs.
 
 
+
+### Loading model and config from pretrained folder
+
+```python
+from transformers import VisionEncoderDecoderConfig
+
+encoder_decoder_config = VisionEncoderDecoderConfig.from_pretrained("naver-clova-ix/donut-base")
+```
+
+"naver-clova-ix/donut-base" is from: https://huggingface.co/naver-clova-ix/donut-base
+
+
+
+## DonutProcessor
+
+https://huggingface.co/docs/transformers/model_doc/donut#transformers.DonutProcessor
+
+* Constructs a Donut processor which wraps a Donut image processor and an XLMRoBERTa tokenizer into a single processor.
+
+* Instantiate a processor associated with a pretrained model.
+
+
+
+```python
+from transformers import DonutProcessor
+
+# instantiate with our custom processor
+processor = DonutProcessor.from_pretrained("naver-clova-ix/donut-base")
+```
+
+
+
+## VisionEncoderDecoderModel
+
+https://huggingface.co/docs/transformers/model_doc/vision-encoder-decoder#transformers.VisionEncoderDecoderModel
+
+* Initialize an image-to-text-sequence model.
+
+```python
+from transformers import VisionEncoderDecoderModel
+
+model = VisionEncoderDecoderModel.from_pretrained(model_name, config=config)
+```
 
 
 
