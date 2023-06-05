@@ -76,9 +76,35 @@ create a dataset from local files by specifying the path to the data files:https
 ds = Dataset.from_dict({"ground_truth": json_list, "image": image_paths}).cast_column("image", ds_image())
 ```
 
+The output should look like:
 
+```json
+Dataset({
+    features: ['ground_truth', 'image'],
+    num_rows: 60578
+})
+```
 
+We could split the dataset into train and test split
 
+```python 
+data=ds.train_test_split(test_size=0.3,shuffle=True,seed=42)
+```
+
+and it should look like:
+
+```json
+DatasetDict({
+    train: Dataset({
+        features: ['ground_truth', 'image'],
+        num_rows: 42404
+    })
+    test: Dataset({
+        features: ['ground_truth', 'image'],
+        num_rows: 18174
+    })
+})
+```
 
 
 
